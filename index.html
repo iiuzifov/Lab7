@@ -84,6 +84,8 @@
       // The main difference from fetchOne() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchAll() {
+        document.getElementById("recordForm").style.display = "none";
+        document.getElementById("recordIDcontainer").style.display = "none";
         let url = document.getElementById('endpoint').value
         let output = document.getElementById('output')
 
@@ -105,6 +107,8 @@
       // The main difference from fetchAll() will be the URL you request from; check
       // the writeup to view the URL pattern for fetch one and fetch all
       function fetchOne() {
+        document.getElementById("recordForm").style.display = "none";
+        document.getElementById("recordIDcontainer").style.display = "none";
         let id = prompt("Enter id for the record");
         let url = document.getElementById('endpoint').value;
         let output = document.getElementById('output');
@@ -164,6 +168,8 @@
       // The main difference from createRecord() will be the URL you send data to; check
       // the writeup to view the URL pattern for create and update
       function updateRecord(button_type) {
+        document.getElementById("recordForm").style.display = "none";
+        document.getElementById("recordIDcontainer").style.display = "none";
         let recordIDcontainer = document.getElementById('recordIDcontainer');
         let author = document.getElementById('author').value;
         let title = document.getElementById('title').value;
