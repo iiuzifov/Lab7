@@ -88,7 +88,7 @@
         let output = document.getElementById('output')
 
         fetch(url).then(function(response) {
-          if (response.status !== 200) {
+          if (!response.ok) {
             output.innerHTML = ('Network Error: ' + response.status);
             return;
           }
@@ -176,7 +176,7 @@
           recordForm.style.display = 'block';
           recordIDcontainer.style.display = 'block';
         }
-        else if(buttonType =='submit'){
+        else if(button_type =='submit'){
           fetch(url + "/" + id, {
               method: 'put',
               headers: {
@@ -187,17 +187,17 @@
                 author,
               })
           }).then(function(response) {
-            if (!(response.status >= 200 && response.status < 300)) {
-              output.innerHTML = ('Network Error: ' + response.status);
-              return;
+            if(response.ok) {
+              response.json().then(function(data) {
+                document.getElementById("output").value = JSON.stringify(data);
+              });
+            } else {
+              document.getElementById("output").value = 
+                `Error ${response.status} : ${response.statusText}`;
             }
-            response.json().then(function(data) {
-              recordForm.style.display = 'none';
-              recordIDcontainer.style.display = 'none';   
-              output.innerHTML = JSON.stringify(data);
-            });
-          }).catch(function(err) {
-            console.log('Fetch Error :-S', err);
+          }
+        ).catch(function(err) {
+            document.getElementById("output").value = err;
           });
         }
       }
